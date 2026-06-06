@@ -160,7 +160,7 @@
 
         to_system_layer {
             bindings = <&mo 6>;
-            key-positions = <49 38>;
+            key-positions = <24 37>;
         };
     };
 
