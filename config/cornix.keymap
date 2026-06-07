@@ -144,6 +144,18 @@
             require-prior-idle-ms = <125>;
             flavor = "tap-preferred";
         };
+
+        mt3: mod_tap3 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MT3";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            require-prior-idle-ms = <125>;
+            flavor = "hold-preferred";
+        };
     };
 
     conditional_layers {
@@ -178,10 +190,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&mt2 LEFT_WIN TAB         &kp Q  &kp W             &kp E           &kp R        &kp T                        &kp Y                &kp U                 &kp I       &kp O         &kp P      &kp BSLH
-&mt LCTRL ESC             &kp A  &kp S             &kp D           &kp F        &kp G                        &kp H                &kp J                 &kp K       &kp L         &kp MINUS  &kp SQT
-&mt2 LEFT_ALT LANGUAGE_1  &kp Z  &kp X             &kp C           &kp V        &kp B         &tog 5  &none  &kp N                &kp M                 &kp COMMA   &kp DOT       &kp FSLH   &mt2 RIGHT_ALT LANGUAGE_2
-&none                     &none  &kp LC(UP_ARROW)  &kp LEFT_SHIFT  &lt 4 SPACE  &lt 1 ESCAPE                 &mt2 LGUI BACKSPACE  &mt2 RIGHT_GUI ENTER  &kp RSHIFT  &kp LC(DOWN)  &none      &none
+&mt2 LEFT_WIN TAB         &kp Q    &kp W             &kp E           &kp R        &kp T                       &kp Y                &kp U                 &kp I       &kp O         &kp P     &kp BSLH
+&mt LCTRL ESC             &kp A    &kp S             &kp D           &kp F        &kp G                       &kp H                &kp J                 &kp K       &kp L         &kp SEMI  &kp SQT
+&mt2 LEFT_ALT LANGUAGE_1  &lt 5 Z  &kp X             &kp C           &kp V        &kp B         &to 2  &none  &kp N                &kp M                 &kp COMMA   &kp DOT       &kp FSLH  &mt2 RIGHT_ALT LANGUAGE_2
+&none                     &none    &kp LC(UP_ARROW)  &kp LEFT_SHIFT  &lt 4 SPACE  &lt 1 ESCAPE                &mt3 LGUI BACKSPACE  &mt3 RIGHT_GUI ENTER  &kp RSHIFT  &kp LC(DOWN)  &none     &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -220,10 +232,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&trans  &trans  &trans       &trans  &trans  &trans                        &trans                &trans  &trans  &trans           &trans  &trans
-&trans  &trans  &trans       &trans  &trans  &trans                        &trans                &trans  &trans  &trans           &trans  &trans
-&trans  &trans  &trans       &trans  &trans  &trans        &trans  &trans  &trans                &trans  &trans  &trans           &trans  &trans
-&none   &none   &kp LG(TAB)  &trans  &trans  &lt 3 ESCAPE                  &mt2 RCTRL BACKSPACE  &trans  &trans  &kp LC(LA(TAB))  &none   &none
+&trans  &trans  &trans       &trans  &trans  &trans                       &trans                &trans  &trans  &trans           &trans  &trans
+&trans  &trans  &trans       &trans  &trans  &trans                       &trans                &trans  &trans  &trans           &trans  &trans
+&trans  &trans  &trans       &trans  &trans  &trans        &to 0  &trans  &trans                &trans  &trans  &trans           &trans  &trans
+&none   &none   &kp LG(TAB)  &trans  &trans  &lt 3 ESCAPE                 &mt2 RCTRL BACKSPACE  &trans  &trans  &kp LC(LA(TAB))  &none   &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -257,22 +269,22 @@
             bindings = <
 &none   &kp NUMBER_1     &kp NUMBER_2  &kp NUMBER_3  &kp NUMBER_4  &kp N5                       &kp NUMBER_6      &kp N7             &kp N8          &kp N9                &kp N0                 &kp GRAVE
 &trans  &kp EXCLAMATION  &kp AT_SIGN   &kp HASH      &kp DOLLAR    &kp PERCENT                  &kp CARET         &kp AMPERSAND      &kp ASTERISK    &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp TILDE
-&trans  &none            &kp RBKT      &kp RPAR      &kp PIPE      &kp BSLH     &trans  &trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp QUESTION           &trans
+&trans  &kp UNDER        &kp PLUS      &kp MINUS     &kp EQUAL     &none        &trans  &trans  &kp LEFT_BRACKET  &kp RIGHT_BRACKET  &kp LEFT_BRACE  &kp RIGHT_BRACE       &kp QUESTION           &trans
 &none   &none            &none         &trans        &trans        &trans                       &trans            &trans             &trans          &none                 &none                  &none
             >;
 
             sensor-bindings =
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
-                <&inc_dec_kp HOME END>;
+                <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
 
         Navi_layer {
             display-name = "Navi";
             bindings = <
-&none  &none  &none           &mmv MOVE_UP    &kp PAGE_UP      &kp PAGE_DOWN                   &mkp MB1  &mkp MB3  &mkp MB2  &msc SCRL_UP  &msc SCRL_DOWN  &none
-&none  &none  &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_RIGHT  &msc SCRL_UP                    &kp LEFT  &kp DOWN  &kp UP    &kp RIGHT     &none           &none
-&none  &none  &none           &none           &none            &msc SCRL_DOWN  &tog 5  &trans  &trans    &trans    &none     &none         &none           &none
-&none  &none  &none           &none           &trans           &trans                          &none     &none     &kp N5    &none         &none           &none
+&none  &none  &none     &mmv MOVE_UP  &kp PAGE_UP  &kp PAGE_DOWN                   &mkp MB1        &mkp MB3        &mkp MB2      &msc SCRL_UP     &msc SCRL_DOWN  &none
+&none  &none  &mkp MB3  &mkp MB1      &mkp MB2     &msc SCRL_UP                    &mmv MOVE_LEFT  &mmv MOVE_DOWN  &mmv MOVE_UP  &mmv MOVE_RIGHT  &none           &none
+&none  &none  &none     &none         &none        &msc SCRL_DOWN  &tog 5  &trans  &trans          &trans          &none         &none            &none           &none
+&none  &none  &none     &none         &trans       &trans                          &none           &none           &kp N5        &none            &none           &none
             >;
         };
 
@@ -287,10 +299,10 @@
             //                    |         |         |         |         |         | |      |      |      |       |      |
 
             bindings = <
-&none  &none  &none  &none  &none  &none                  &bt BT_CLR   &bt BT_CLR_ALL  &none  &bt BT_SEL 3  &bt BT_SEL 0  &to 0
-&none  &none  &none  &none  &none  &none                  &bootloader  &none           &none  &bt BT_SEL 4  &bt BT_SEL 1  &to 2
-&none  &none  &none  &none  &none  &none  &trans  &trans  &none        &none           &none  &none         &bt BT_SEL 2  &none
-&none  &none  &none  &none  &none  &none                  &none        &none           &none  &none         &none         &none
+&none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &bt BT_CLR   &bt BT_CLR_ALL  &none  &bt BT_SEL 3  &bt BT_SEL 0  &to 0
+&none  &none         &none         &none         &none         &none                         &bootloader  &none           &none  &bt BT_SEL 4  &bt BT_SEL 1  &to 2
+&none  &none         &none         &none         &none         &none         &trans  &trans  &none        &none           &none  &none         &bt BT_SEL 2  &none
+&none  &none         &none         &none         &none         &none                         &none        &none           &none  &none         &none         &none
             >;
         };
     };
