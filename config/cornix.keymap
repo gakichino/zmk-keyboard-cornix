@@ -174,6 +174,21 @@
             bindings = <&mo 6>;
             key-positions = <24 37>;
         };
+
+        rightclick {
+            bindings = <&mkp RCLK>;
+            key-positions = <15 16>;
+        };
+
+        leftclick {
+            bindings = <&mkp LCLK>;
+            key-positions = <14 15>;
+        };
+
+        middleclick {
+            bindings = <&mkp MCLK>;
+            key-positions = <14 16>;
+        };
     };
 
     keymap {
@@ -190,10 +205,10 @@
             //               | GUI | ALT  | CTRL | LOWER|  ENTER |  | SPACE | RAISE| CTRL  | ALT   | GUI  |
 
             bindings = <
-&mt2 LEFT_WIN TAB         &kp Q    &kp W             &kp E           &kp R        &kp T                       &kp Y                &kp U                 &kp I       &kp O         &kp P     &kp BSLH
-&mt LCTRL ESC             &kp A    &kp S             &kp D           &kp F        &kp G                       &kp H                &kp J                 &kp K       &kp L         &kp SEMI  &kp SQT
-&mt2 LEFT_ALT LANGUAGE_1  &lt 5 Z  &kp X             &kp C           &kp V        &kp B         &to 2  &none  &kp N                &kp M                 &kp COMMA   &kp DOT       &kp FSLH  &mt2 RIGHT_ALT LANGUAGE_2
-&none                     &none    &kp LC(UP_ARROW)  &kp LEFT_SHIFT  &lt 4 SPACE  &lt 1 ESCAPE                &mt3 LGUI BACKSPACE  &mt3 RIGHT_GUI ENTER  &kp RSHIFT  &kp LC(DOWN)  &none     &none
+&mt2 LEFT_WIN TAB         &kp Q  &kp W             &kp E           &kp R        &kp T                        &kp Y                &kp U                 &kp I       &kp O         &kp P     &kp BSLH
+&mt LCTRL ESC             &kp A  &kp S             &kp D           &kp F        &kp G                        &kp H                &kp J                 &kp K       &kp L         &kp SEMI  &kp SQT
+&mt2 LEFT_ALT LANGUAGE_1  &kp Z  &kp X             &kp C           &kp V        &kp B         &tog 5  &none  &kp N                &kp M                 &kp COMMA   &kp DOT       &kp FSLH  &mt2 RIGHT_ALT LANGUAGE_2
+&none                     &none  &kp LC(UP_ARROW)  &kp LEFT_SHIFT  &lt 4 SPACE  &lt 1 ESCAPE                 &mt3 LGUI BACKSPACE  &mt3 RIGHT_GUI ENTER  &kp RSHIFT  &kp LC(DOWN)  &none     &none
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -300,7 +315,7 @@
 
             bindings = <
 &none  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                  &bt BT_CLR   &bt BT_CLR_ALL  &none  &bt BT_SEL 3  &bt BT_SEL 0  &to 0
-&none  &none         &none         &none         &none         &none                         &bootloader  &none           &none  &bt BT_SEL 4  &bt BT_SEL 1  &to 2
+&none  &none         &none         &none         &none         &bootloader                   &bootloader  &none           &none  &bt BT_SEL 4  &bt BT_SEL 1  &to 2
 &none  &none         &none         &none         &none         &none         &trans  &trans  &none        &none           &none  &none         &bt BT_SEL 2  &none
 &none  &none         &none         &none         &none         &none                         &none        &none           &none  &none         &none         &none
             >;
